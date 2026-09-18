@@ -1,0 +1,259 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: #0f172a; 
+  color: #333;
+}
+
+/* ==========================================
+   ENTERPRISE DARK BACKGROUND LAYER
+   ========================================== */
+
+@keyframes slowPan {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-bg {
+  background: linear-gradient(-45deg, #0f172a, #1e293b, #082f49, #020617);
+  background-size: 400% 400%;
+  animation: slowPan 18s ease infinite;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden; 
+}
+
+/* Ensure actual app content rests cleanly on top */
+.app-content {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+}
+
+/* ==========================================
+   MOVING GLOWING FROSTED GLASS BLOCKS
+   ========================================== */
+
+.ambient-shapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0; 
+  pointer-events: none; 
+}
+
+.shape {
+  position: absolute;
+  /* ENHANCED VISIBILITY: Brighter cyan/blue glowing frosted glass effect for dark mode */
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.35), rgba(2, 132, 199, 0.15));
+  border: 1px solid rgba(56, 189, 248, 0.6); /* Vibrant cyan border */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 8px 32px 0 rgba(56, 189, 248, 0.35); /* Strong blue ambient glow */
+  border-radius: 20px; 
+  
+  bottom: -20%;
+  animation: floatUpward infinite linear;
+}
+
+/* Distinct sizes, starting points, and speeds for a natural feel */
+.shape-1 { width: 140px; height: 140px; left: 10%; animation-duration: 22s; animation-delay: 0s; }
+.shape-2 { width: 100px; height: 100px; left: 35%; animation-duration: 16s; animation-delay: 3s; }
+.shape-3 { width: 180px; height: 180px; left: 70%; animation-duration: 28s; animation-delay: 1s; }
+.shape-4 { width: 80px; height: 80px; left: 85%; animation-duration: 14s; animation-delay: 6s; }
+.shape-5 { width: 240px; height: 240px; left: 45%; animation-duration: 34s; animation-delay: 10s; }
+.shape-6 { width: 110px; height: 110px; left: 20%; animation-duration: 20s; animation-delay: 12s; }
+
+@keyframes floatUpward {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.85; /* Highly visible fade-in */
+  }
+  85% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateY(-130vh) rotate(360deg);
+    opacity: 0; 
+  }
+}
+
+/* ==========================================
+   3D CARDS & GLASSMORPHISM
+   ========================================== */
+
+.glass-header {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+}
+
+.card-3d {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(226, 232, 240, 0.6);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+}
+
+.card-3d:hover {
+  transform: translateY(-8px) perspective(1000px) rotateX(3deg) rotateY(-2deg);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border-color: rgba(2, 132, 199, 0.3);
+}
+
+.panel-3d {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 1.5rem; 
+  border-radius: 14px;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.panel-3d:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-3d {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-3d:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4);
+}
+
+.btn-3d:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* ==========================================
+   ORIGINAL STYLES (RETAINED FOR DATA/LAYOUT)
+   ========================================== */
+
+/* Auth Split View */
+.auth-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.auth-sidebar {
+  flex: 1.1;
+  background: #0f172a;
+  color: #ffffff;
+  padding: 4rem 3.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.auth-sidebar h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.25;
+  margin-bottom: 1.25rem;
+}
+
+.auth-feature {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1.2rem;
+}
+
+.auth-feature .check {
+  color: #00d2ff;
+  font-weight: bold;
+  margin-right: 0.8rem;
+}
+
+.auth-form-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+}
+
+.form-card {
+  width: 100%;
+  max-width: 460px;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 0.4rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  border-color: #0284c7;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 0.85rem;
+  background-color: #0284c7;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #0369a1;
+}
+
+.btn-primary:disabled {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+}
